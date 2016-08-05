@@ -29,6 +29,10 @@ boolean requestDataRepresentation = false;
 int IDspy;
 int IDsensor;
 
+String offSetListParameters[]={"temperatura resistencia calderin", "temperatura resistencia cuba", "presion lavado A", "presion lavado B", "presion aclarado A", "presion aclarado B", "presion dosificador", "caudal aclarado B"};
+// trcucba:1, trcalderin:2, pla:3, plb:4, paa:5, pab:6, pd:7, cab:8
+int IDoffset;
+
 boolean blinkRequestLine = false;
 boolean blinkAnswerLine = false;
 
@@ -107,7 +111,8 @@ void setup() {
 
   list_serial.setItems(serialList, 0);  
   printArray(serialList);
-
+  offsetList.setItems(offSetListParameters, 0);
+   
   //dataRequestEvent_1.setEnabled(false);  
   //dataRequestEvent_2.setEnabled(false);
 }
@@ -161,8 +166,8 @@ void draw() {
   if (statePres_bajo == true) image(img_pres_bajo, posx, posy, ix, iy); 
   if (statePuerta == true) image(img_puerta_abierta, ix+posx, posy+10, ix*0.18, iy*0.80);
   if (!statePuerta == true) image(img_puerta_cerrada, ix+posx, posy+10, ix*0.18, iy*0.80);
-  if (statePowerOn == true) image(img_botonOn, ix*1.03+posx, posy+160, ix*0.04, iy*0.07);
-  if (!statePowerOn == true) image(img_botonOff, ix*1.03+posx, posy+160, ix*0.04, iy*0.07);
+  if (statePowerOn == true) image(img_botonOn, ix*0.96+posx, posy+25, ix*0.04, iy*0.07);
+  if (!statePowerOn == true) image(img_botonOff, ix*0.96+posx, posy+25, ix*0.04, iy*0.07);
 }
 
 void serialConection() {
@@ -222,13 +227,13 @@ void link_answer_1() {
       else statePres_bajo = false;
     } else if (requestDataArray_1[i] =="t_cuba") {
       stateT_cuba = float(splitDataAnswer[i+1])/100;
-      temperaturaAguaCuba.setText("agua "+str(stateT_cuba)+"ºC");
+      temperaturaAguaCuba.setText("cuba "+str(stateT_cuba)+"ºC");
     } else if (requestDataArray_1[i] =="t_cald") {
       stateT_cald = float(splitDataAnswer[i+1])/100;
-      temperaturaAguaCalderin.setText("agua "+str(stateT_cald)+"ºC");
+      temperaturaAguaCalderin.setText("calderin "+str(stateT_cald)+"ºC");
     } else if (requestDataArray_1[i] =="t_aclarado") {
       stateT_aclarado = float(splitDataAnswer[i+1])/100;
-      temperaturaAguaAclarado.setText("agua "+str(stateT_aclarado)+"ºC");
+      temperaturaAguaAclarado.setText("aclarado "+str(stateT_aclarado)+"ºC");
     }
   }
 }
@@ -425,6 +430,64 @@ void onBlinkAnswer() {
   else if(blinkAnswerLine==true){
     blinkAnswerLine = !blinkAnswerLine;
   }
+}
+
+void cambiarUnidad(){
+  if (offSetListParameters[offsetList.getSelectedIndex()]=="temperatura resistencia calderin") {
+    unidad.setText("ºC");
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="temperatura resistencia cuba") {
+    unidad.setText("ºC");
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion lavado A") {
+    unidad.setText("bar");
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion lavado B") {
+    unidad.setText("bar");
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion aclarado A") {
+    unidad.setText("bar");
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion aclarado B") {
+    unidad.setText("bar");
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion dosificador") {
+    unidad.setText("bar");
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="caudal aclarado B") {
+    unidad.setText("l/min");
+  }
+}
+
+void sendOffset() {
+  //print(offSetListParameters[offsetList.getSelectedIndex()]);
+  String valorString = valorOffset.getText();
+  float valorNum = 0;
+  String offsetSerial;
+  if (offSetListParameters[offsetList.getSelectedIndex()]=="temperatura resistencia calderin") {
+    IDoffset = 2;
+    valorNum = float(valorString)*10;
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="temperatura resistencia cuba") {
+    IDoffset = 1;
+    valorNum = float(valorString)*10;
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion lavado A") {
+    IDoffset = 3;
+    valorNum = float(valorString)*100;
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion lavado B") {
+    IDoffset = 4;
+    valorNum = float(valorString)*100;
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion aclarado A") {
+    IDoffset = 5;
+    valorNum = float(valorString)*100;
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion aclarado B") {
+    IDoffset = 6;
+    valorNum = float(valorString)*100;
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion dosificador") {
+    IDoffset = 7;
+    valorNum = float(valorString)*100;
+  } else if (offSetListParameters[offsetList.getSelectedIndex()]=="caudal aclarado B") {
+    IDoffset = 8;
+    valorNum = float(valorString)*10;
+  }
+  offsetSerial = "%"+str(IDoffset)+","+str(int(valorNum))+"$";
+  if (serialSelection==true) {
+    myPort.write(offsetSerial);
+  }
+  valorOffset.setText("");
+  print(offsetSerial);
 }
 
 void serialEvent(Serial p) { 

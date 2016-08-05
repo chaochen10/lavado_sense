@@ -116,6 +116,24 @@ public void tResistenciaCalderin_clicked1(GCheckbox source, GEvent event) { //_C
   println("tResistenciaCalderin - GCheckbox >> GEvent." + event + " @ " + millis());
 } //_CODE_:tResistenciaCalderin:762939:
 
+public void notas_change1(GTextArea source, GEvent event) { //_CODE_:notas:526701:
+  println("notas - GTextArea >> GEvent." + event + " @ " + millis());
+} //_CODE_:notas:526701:
+
+public void offSetList_click1(GDropList source, GEvent event) { //_CODE_:offsetList:435603:
+  println("dropList1 - GDropList >> GEvent." + event + " @ " + millis());
+    cambiarUnidad();
+} //_CODE_:offsetList:435603:
+
+public void valorOffset_change1(GTextField source, GEvent event) { //_CODE_:valorOffset:336321:
+  println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
+
+} //_CODE_:valorOffset:336321:
+
+public void enviarOffset_click1(GButton source, GEvent event) { //_CODE_:enviarOffset:575314:
+  println("enviarOffset - GButton >> GEvent." + event + " @ " + millis());
+  sendOffset();
+} //_CODE_:enviarOffset:575314:
 
 
 // Create all the GUI controls. 
@@ -240,87 +258,167 @@ public void customGUI(){
   answer.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   answer.setOpaque(false);
   
-  presionLavadoA = new GCheckbox(this, 5, 250, 120, 20);
+  presionLavadoA = new GCheckbox(this, 5, 220, 120, 20);
   presionLavadoA.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //presionLavadoA.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   presionLavadoA.setText("presion lavado A");
   presionLavadoA.setOpaque(false);
   presionLavadoA.addEventHandler(this, "presionLavadoA_clicked1");
   presionLavadoA.setSelected(true);
-  presionAclaradoA = new GCheckbox(this, 5, 270, 130, 20);
+  presionAclaradoA = new GCheckbox(this, 5, 240, 130, 20);
   presionAclaradoA.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+ // presionAclaradoA.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   presionAclaradoA.setText("presion aclarado A");
   presionAclaradoA.setOpaque(false);
   presionAclaradoA.addEventHandler(this, "presionAclaradoA_clicked1");
   presionAclaradoA.setSelected(true);
-  presionDosificador = new GCheckbox(this, 5, 290, 130, 20);
+  presionDosificador = new GCheckbox(this, 5, 260, 130, 20);
   presionDosificador.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //presionDosificador.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   presionDosificador.setText("presion dosificador");
   presionDosificador.setOpaque(false);
   presionDosificador.addEventHandler(this, "presionDosificador_clicked1");
   presionDosificador.setSelected(true);
-  presionLavadoB = new GCheckbox(this, 130, 250, 120, 20);
+  presionLavadoB = new GCheckbox(this, 130, 220, 120, 20);
   presionLavadoB.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //presionLavadoB.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   presionLavadoB.setText("presion lavado B");
   presionLavadoB.setOpaque(false);
   presionLavadoB.addEventHandler(this, "presionLavadoB_clicked1");
   presionLavadoB.setSelected(true);
-  presionAclaradoB = new GCheckbox(this, 130, 270, 130, 20);
+  presionAclaradoB = new GCheckbox(this, 130, 240, 130, 20);
   presionAclaradoB.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //presionAclaradoB.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   presionAclaradoB.setText("presion aclarado B");
   presionAclaradoB.setOpaque(false);
   presionAclaradoB.addEventHandler(this, "presionAclaradoB_clicked1");
   presionAclaradoB.setSelected(true);
-  caudalAclaradoB = new GCheckbox(this, 130, 310, 120, 20);
+  caudalAclaradoB = new GCheckbox(this, 130, 280, 120, 20);
   caudalAclaradoB.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  caudalAclaradoB.setText("caudal Aclarado B");
+  //caudalAclaradoB.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  caudalAclaradoB.setText("caudal aclarado B");
   caudalAclaradoB.setOpaque(false);
   caudalAclaradoB.addEventHandler(this, "caudalAclaradoB_clicked1");
   caudalAclaradoB.setSelected(true);
-  turbidezCuba = new GCheckbox(this, 5, 330, 120, 20);
+  turbidezCuba = new GCheckbox(this, 5, 300, 120, 20);
   turbidezCuba.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //turbidezCuba.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   turbidezCuba.setText("turbidez cuba");
   turbidezCuba.setOpaque(false);
   turbidezCuba.addEventHandler(this, "turbidezCuba_clicked1");
   turbidezCuba.setSelected(true);
-  tResistenciaCuba = new GCheckbox(this, 5, 350, 140, 20);
+  tResistenciaCuba = new GCheckbox(this, 5, 320, 140, 20);
   tResistenciaCuba.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //tResistenciaCuba.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   tResistenciaCuba.setText("resistencia cuba ºC");
   tResistenciaCuba.setOpaque(false);
   tResistenciaCuba.addEventHandler(this, "tResistenciaCuba_clicked1");
   tResistenciaCuba.setSelected(true);
-  tResistenciaCalderin = new GCheckbox(this, 130, 350, 150, 20);
+  tResistenciaCalderin = new GCheckbox(this, 130, 320, 150, 20);
   tResistenciaCalderin.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //tResistenciaCalderin.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   tResistenciaCalderin.setText("resistencia calderin ºC");
   tResistenciaCalderin.setOpaque(false);
   tResistenciaCalderin.addEventHandler(this, "tResistenciaCalderin_clicked1");
   tResistenciaCalderin.setSelected(true);
   
-  temperaturaAguaCuba = new GLabel(this, 594, 268, 90, 20);
+  temperaturaAguaCuba = new GLabel(this, 594, 300, 90, 20);
   temperaturaAguaCuba.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   temperaturaAguaCuba.setText("agua cuba ºC");
   temperaturaAguaCuba.setLocalColorScheme(GCScheme.RED_SCHEME);
   temperaturaAguaCuba.setOpaque(false);
-  temperaturaAguaCalderin = new GLabel(this, 365, 188, 100, 20);
+  temperaturaAguaCalderin = new GLabel(this, 365, 220, 100, 20);
   temperaturaAguaCalderin.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   temperaturaAguaCalderin.setText("agua calderin ºC");
   temperaturaAguaCalderin.setLocalColorScheme(GCScheme.RED_SCHEME);
   temperaturaAguaCalderin.setOpaque(false);
-  temperaturaAguaAclarado = new GLabel(this, 500, 45, 100, 20);
+  temperaturaAguaAclarado = new GLabel(this, 550, 45, 100, 20);
   temperaturaAguaAclarado.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   temperaturaAguaAclarado.setText("agua aclarado ºC");
   temperaturaAguaAclarado.setLocalColorScheme(GCScheme.RED_SCHEME);
   temperaturaAguaAclarado.setOpaque(false);
   
-  temperaturaResistenciaCuba = new GLabel(this, 580, 347, 120, 20);
+  temperaturaResistenciaCuba = new GLabel(this, 580, 325, 120, 20);
   temperaturaResistenciaCuba.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   temperaturaResistenciaCuba.setText("resistencia cuba ºC");
-  temperaturaResistenciaCuba.setLocalColorScheme(GCScheme.RED_SCHEME);
+  temperaturaResistenciaCuba.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   temperaturaResistenciaCuba.setOpaque(false);
-  temperaturaResistenciaCalderin = new GLabel(this, 340, 267, 125, 20);
+  temperaturaResistenciaCalderin = new GLabel(this, 350, 245, 125, 20);
   temperaturaResistenciaCalderin.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   temperaturaResistenciaCalderin.setText("resistencia calderin ºC");
-  temperaturaResistenciaCalderin.setLocalColorScheme(GCScheme.RED_SCHEME);
+  temperaturaResistenciaCalderin.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   temperaturaResistenciaCalderin.setOpaque(false);
+  
+  lavadoA = new GLabel(this, 670, 70, 80, 20);
+  lavadoA.setText("lavado bar");
+  lavadoA.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lavadoA.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  lavadoA.setOpaque(false);
+  aclaradoA = new GLabel(this, 572, 70, 80, 20);
+  aclaradoA.setText("aclarado bar");
+  aclaradoA.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  aclaradoA.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  aclaradoA.setOpaque(false);
+  aclaradoB = new GLabel(this, 572, 220, 80, 20);
+  aclaradoB.setText("aclarado bar");
+  aclaradoB.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  aclaradoB.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  aclaradoB.setOpaque(false);
+  lavadoB = new GLabel(this, 670, 220, 80, 20);
+  lavadoB.setText("lavado bar");
+  lavadoB.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  lavadoB.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  lavadoB.setOpaque(false);
+  turbidez = new GLabel(this, 600, 350, 80, 20);
+  turbidez.setText("turbidez ntu");
+  turbidez.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  turbidez.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  turbidez.setOpaque(false);
+  dosificador = new GLabel(this, 745, 225, 100, 20);
+  dosificador.setText("dosificador bar");
+  dosificador.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  dosificador.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  dosificador.setOpaque(false);
+  aclaradoBcaudal = new GLabel(this, 572, 245, 80, 20);
+  aclaradoBcaudal.setText("aclarado l/min");
+  aclaradoBcaudal.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  aclaradoBcaudal.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  aclaradoBcaudal.setOpaque(false);
+  
+  notas = new GTextArea(this, 750, 380, 233, 118, G4P.SCROLLBARS_NONE);
+  notas.setPromptText("espacio para notas...");
+  notas.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  notas.setOpaque(true);
+  notas.addEventHandler(this, "notas_change1");
+  offsetList = new GDropList(this, 290, 395, 223, 105, 4);
+  //offsetList.setItems(loadStrings("list_435603"), 0);
+  offsetList.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  offsetList.addEventHandler(this, "offSetList_click1");
+  offset = new GLabel(this, 245, 395, 45, 20);
+  offset.setText("offset :");
+  offset.setTextBold();
+  offset.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  offset.setOpaque(false);
+  valorOffset = new GTextField(this, 558, 395, 34, 20, G4P.SCROLLBARS_NONE);
+  valorOffset.setPromptText("........");
+  valorOffset.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  valorOffset.setOpaque(true);
+  valorOffset.addEventHandler(this, "valorOffset_change1");
+  labelValorOffset = new GLabel(this, 515, 395, 45, 20);
+  labelValorOffset.setText("valor :");
+  labelValorOffset.setTextBold();
+  labelValorOffset.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  labelValorOffset.setOpaque(false);
+  enviarOffset = new GButton(this, 635, 395, 55, 20);
+  enviarOffset.setText("cambiar");
+  enviarOffset.setTextBold();
+  enviarOffset.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  enviarOffset.addEventHandler(this, "enviarOffset_click1");
+  unidad = new GLabel(this, 593, 395, 40, 20);
+  unidad.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  unidad.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  unidad.setText("ºC");
+  unidad.setOpaque(false);
 }
 
 // Variable declarations 
@@ -364,3 +462,19 @@ GLabel temperaturaAguaAclarado;
 
 GLabel temperaturaResistenciaCuba; 
 GLabel temperaturaResistenciaCalderin; 
+
+GLabel lavadoA; 
+GLabel aclaradoA; 
+GLabel aclaradoB; 
+GLabel lavadoB; 
+GLabel turbidez; 
+GLabel dosificador; 
+GLabel aclaradoBcaudal; 
+
+GTextArea notas; 
+GDropList offsetList; 
+GLabel offset; 
+GTextField valorOffset; 
+GLabel labelValorOffset; 
+GButton enviarOffset; 
+GLabel unidad; 
