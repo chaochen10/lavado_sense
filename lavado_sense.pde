@@ -127,7 +127,8 @@ void draw() {
   fill(0, 102, 153);
 
   image(img_principal, posx, posy, ix, iy);
-  //stateVaciado = true;
+  stateEva = true;
+  stateBoya_sup = true;
   
   if (requestEvent_1) {
     onDataRequestParameters_1();
