@@ -120,9 +120,9 @@ void setup() {
 void draw() {
   background(255);
   image(img_principal, posx, posy, ix, iy);
-
+  //stateVaciado = true;
+  
   if (requestEvent_1) {
-
     onDataRequestParameters_1();
     requestEvent_1 = false;
   } else if (requestEvent_2) {
@@ -157,8 +157,24 @@ void draw() {
     image(img_eva, posx, posy, ix, iy);
   }
   if (stateB_lav == true) image(img_lavado, posx, posy, ix, iy);
-  if (stateC_cald == true) image(img_c_calderin, posx, posy, ix, iy);
-  if (stateC_cuba == true) image(img_c_cuba, posx, posy, ix, iy);
+  if (stateC_cald == true) {
+    image(img_c_calderin, posx, posy, ix, iy);
+    temperaturaAguaCalderin.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
+    temperaturaResistenciaCalderin.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
+  }
+  else if (!stateC_cald == true) {
+    temperaturaAguaCalderin.setLocalColorScheme(GCScheme.RED_SCHEME);
+    temperaturaResistenciaCalderin.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  }
+  if (stateC_cuba == true){
+    image(img_c_cuba, posx, posy, ix, iy);
+    temperaturaAguaCuba.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
+    temperaturaResistenciaCuba.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
+  }
+  else if (!stateC_cuba == true){
+    temperaturaAguaCuba.setLocalColorScheme(GCScheme.RED_SCHEME);
+    temperaturaResistenciaCuba.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  }
   if (stateVaciado == true) image(img_vaciado, posx, posy, ix, iy);
   if (stateB_pres == true) image(img_presion, posx, posy, ix, iy);
   if (stateBoya_inf == true) image(img_boya_inf, posx, posy, ix, iy);

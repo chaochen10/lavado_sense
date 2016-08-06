@@ -374,7 +374,7 @@ public void customGUI(){
   turbidez.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   turbidez.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   turbidez.setOpaque(false);
-  dosificador = new GLabel(this, 745, 225, 100, 20);
+  dosificador = new GLabel(this, 775, 350, 100, 20);
   dosificador.setText("dosificador bar");
   dosificador.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   dosificador.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
