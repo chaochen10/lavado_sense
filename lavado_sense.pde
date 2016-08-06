@@ -484,36 +484,46 @@ void cambiarUnidad(){
 void sendOffset() {
   //print(offSetListParameters[offsetList.getSelectedIndex()]);
   String valorString = valorOffset.getText();
+  String parameter="";
   float valorNum = 0;
   String offsetSerial;
   if (offSetListParameters[offsetList.getSelectedIndex()]=="temperatura resistencia calderin") {
     IDoffset = 2;
+    parameter = "os_stca";
     valorNum = float(valorString)*10;
   } else if (offSetListParameters[offsetList.getSelectedIndex()]=="temperatura resistencia cuba") {
     IDoffset = 1;
+    parameter = "os_stcu";
     valorNum = float(valorString)*10;
   } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion lavado A") {
     IDoffset = 3;
+    parameter = "os_spla";
     valorNum = float(valorString)*100;
   } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion lavado B") {
     IDoffset = 4;
+    parameter = "os_splb";
     valorNum = float(valorString)*100;
   } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion aclarado A") {
     IDoffset = 5;
+    parameter = "os_spaa";
     valorNum = float(valorString)*100;
   } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion aclarado B") {
     IDoffset = 6;
+    parameter = "os_spab";
     valorNum = float(valorString)*100;
   } else if (offSetListParameters[offsetList.getSelectedIndex()]=="presion dosificador") {
     IDoffset = 7;
+    parameter = "os_spd";
     valorNum = float(valorString)*100;
   } else if (offSetListParameters[offsetList.getSelectedIndex()]=="caudal aclarado B") {
     IDoffset = 8;
+    parameter = "os_scab";
     valorNum = float(valorString)*10;
   }
-  offsetSerial = "%"+str(IDoffset)+","+str(int(valorNum))+"$";
+  offsetSerial = "%"+str(IDoffset)+","+ parameter+ "," +str(int(valorNum))+"$";
   if (serialSelection==true) {
     myPort.write(offsetSerial);
+    request.setText(offsetSerial);
   }
   valorOffset.setText("");
   print(offsetSerial);
