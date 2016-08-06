@@ -51,6 +51,7 @@ PImage img_c_cuba;
 PImage img_c_calderin;
 PImage img_botonOn;
 PImage img_botonOff;
+PImage img_logoSammic;
 int ix = 650;
 int iy = 350;
 int posx = 200;
@@ -104,6 +105,7 @@ void setup() {
   img_c_calderin = loadImage("calentamiento calderin.png");
   img_botonOn = loadImage("botonOn.png");
   img_botonOff = loadImage("botonOff.png");
+  img_logoSammic = loadImage("logo sammic.png");
 
   createGUI();
   customGUI();
@@ -119,6 +121,11 @@ void setup() {
 
 void draw() {
   background(255);
+  image(img_logoSammic,2,height-42,40,40);
+  textSize(12);
+  text("LavadoSNS  v0.1   160806", 55, height-8); 
+  fill(0, 102, 153);
+
   image(img_principal, posx, posy, ix, iy);
   //stateVaciado = true;
   
