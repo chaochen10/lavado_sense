@@ -256,17 +256,23 @@ void link_answer_1() {
 void link_answer_2() {
   for (int i=0; i<request2ArrayPos; i++) {
     if (requestDataArray_2[i] =="spla") {// sensor presion lavado alta
+      lavadoA.setText(str(float (requestDataArray_2[i])/10));
     } else if (requestDataArray_2[i] =="splb") {// sensor preison labado baja
+      lavadoB.setText(str(float (requestDataArray_2[i])/10));
     } else if (requestDataArray_2[i] =="spaa") {// sensor presion aclarado alta
+      aclaradoA.setText(str(float (requestDataArray_2[i])/10));
     } else if (requestDataArray_2[i] =="spab") {// sensor presion aclarado baja
+      aclaradoB.setText(str(float (requestDataArray_2[i])/10));
     } else if (requestDataArray_2[i] =="spd") {// sensor presion dosificador
+      dosificador.setText(str(float (requestDataArray_2[i])/10));
     } else if (requestDataArray_2[i] =="scab") {// sensor caudal aclarado baja
+      aclaradoBcaudal.setText(str(float (requestDataArray_2[i])/100));
     } else if (requestDataArray_2[i] =="stca") {// sensor temp. resistencia calderin
       float tResistenciaCalderin = float (requestDataArray_2[i])/100;
-      temperaturaResistenciaCalderin.setText("Resistencia "+ tResistenciaCalderin + "ºC");
+      temperaturaResistenciaCalderin.setText("Resistencia "+ str(tResistenciaCalderin) + "ºC");
     } else if (requestDataArray_2[i] =="stcu") {// sensor temp. resistencia cuba
       float tResistenciaCuba = float(requestDataArray_2[i])/100;
-      temperaturaResistenciaCuba.setText("Resistencia "+ tResistenciaCuba + "ºC");
+      temperaturaResistenciaCuba.setText("Resistencia "+ str(tResistenciaCuba) + "ºC");
     } else if (requestDataArray_2[i] =="st") {// sensor turbidez
     }
   }
